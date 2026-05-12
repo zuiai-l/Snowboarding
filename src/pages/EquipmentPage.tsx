@@ -9,23 +9,18 @@ export function EquipmentPage() {
   const [shoeSize, setShoeSize] = useState<number>(42);
 
   const calculateBoardLength = () => {
-    let baseLength = 150;
+    let baseLength = height - 15;
     
-    if (weight < 50) baseLength = 140;
-    else if (weight < 60) baseLength = 145;
-    else if (weight < 70) baseLength = 150;
-    else if (weight < 80) baseLength = 155;
-    else if (weight < 90) baseLength = 160;
-    else if (weight < 100) baseLength = 165;
-    else baseLength = 170;
-
     if (style === 'freestyle') {
-      baseLength -= 4;
+      baseLength -= 3;
     } else if (style === 'powder') {
       baseLength += 5;
     } else if (style === 'carving') {
-      baseLength += 4;
+      baseLength += 3;
     }
+
+    if (weight < 50) baseLength -= 3;
+    else if (weight > 90) baseLength += 3;
 
     return baseLength;
   };
@@ -197,7 +192,7 @@ export function EquipmentPage() {
               <div className="text-sm text-blue-300 mb-2">板长推荐</div>
               <div className="text-3xl font-bold text-white">{boardLength - 2} ~ {boardLength + 2} cm</div>
               <div className="text-xs text-slate-400 mt-2">
-                根据体重 {weight}kg + 风格调整
+                {height}cm - 15cm + 风格调整
               </div>
             </div>
 
