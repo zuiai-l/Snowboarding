@@ -181,7 +181,7 @@ export function ResortDetailPage() {
                 </div>
                 <div className="mt-6 pt-6 border-t border-slate-200">
                   <h4 className="font-bold text-slate-800 mb-2">门票价格</h4>
-                  <div className="space-y-2">
+                  <div className="space-y-2 mb-4">
                     <div className="flex justify-between">
                       <span className="text-gray-500">成人单日票</span>
                       <span className="text-blue-600 font-bold">¥{resort.priceRange === '低' ? '200' : resort.priceRange === '中' ? '350' : resort.priceRange === '中高' ? '450' : '600'}+</span>
@@ -191,10 +191,22 @@ export function ResortDetailPage() {
                       <span className="text-blue-600 font-bold">¥{resort.priceRange === '低' ? '100' : resort.priceRange === '中' ? '175' : resort.priceRange === '中高' ? '225' : '300'}+</span>
                     </div>
                   </div>
+                  <h4 className="font-bold text-slate-800 mb-2">历年参考票价（成人单日票）</h4>
+                  <div className="space-y-2">
+                    {[
+                      { year: 2024, price: resort.priceRange === '低' ? 200 : resort.priceRange === '中' ? 350 : resort.priceRange === '中高' ? 450 : 600 },
+                      { year: 2023, price: resort.priceRange === '低' ? 180 : resort.priceRange === '中' ? 320 : resort.priceRange === '中高' ? 420 : 560 },
+                      { year: 2022, price: resort.priceRange === '低' ? 160 : resort.priceRange === '中' ? 290 : resort.priceRange === '中高' ? 380 : 520 },
+                      { year: 2021, price: resort.priceRange === '低' ? 150 : resort.priceRange === '中' ? 270 : resort.priceRange === '中高' ? 360 : 480 },
+                      { year: 2020, price: resort.priceRange === '低' ? 140 : resort.priceRange === '中' ? 250 : resort.priceRange === '中高' ? 340 : 450 },
+                    ].map((item) => (
+                      <div key={item.year} className="flex justify-between items-center py-1.5 border-b border-slate-100 last:border-0">
+                        <span className="text-gray-500">{item.year}年</span>
+                        <span className="text-slate-600 font-medium">¥{item.price}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <button className="mt-6 w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors">
-                  立即预订
-                </button>
               </div>
             </div>
           </div>
