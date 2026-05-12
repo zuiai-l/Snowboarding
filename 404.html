@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>单板世界</title>
+    <script type="module" crossorigin src="/Snowboarding/assets/index-CPJk8dvR.js"></script>
+    <link rel="stylesheet" crossorigin href="/Snowboarding/assets/index-DoCQYPa8.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      (function() {
+        'use strict';
+        if (window.TraeBadgePlugin) return;
+        var css = `
+          .trae-badge { position: fixed; bottom: 20px; right: 20px; z-index: 999999; cursor: pointer; }
+          .trae-badge img { width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.2s; }
+          .trae-badge img:hover { transform: scale(1.1); }
+        `;
+        var style = document.createElement('style');
+        style.textContent = css;
+        document.head.appendChild(style);
+        var badge = document.createElement('a');
+        badge.className = 'trae-badge';
+        badge.href = 'https://www.trae.ai/solo?showJoin=1';
+        badge.target = '_blank';
+        badge.innerHTML = '<img src="https://static.trae.ai/badge/logo.png" alt="Trae AI">';
+        document.body.appendChild(badge);
+      })();
+    </script>
+  </body>
+</html>
