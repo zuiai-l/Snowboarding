@@ -11,7 +11,7 @@ import { ResortDetailPage } from "@/pages/ResortDetailPage";
 
 export default function App() {
   return (
-    <Router>
+    <Router basename="/Snowboarding">
       <Header />
       <main className="min-h-screen">
         <Routes>
