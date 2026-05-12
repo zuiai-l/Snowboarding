@@ -1,11 +1,73 @@
 import { useState } from 'react';
-import { Star, ShoppingCart, Heart } from 'lucide-react';
-import { equipment, equipmentCategories } from '../data/mockData';
+import { Star, ShoppingCart, Heart, User, Scale, Mountain, Snowflake, Ruler } from 'lucide-react';
+import { equipment, equipmentCategories, ridingStyles } from '../data/mockData';
 import { useFavoritesStore } from '../store/favoritesStore';
 
 export function EquipmentPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [height, setHeight] = useState<number>(170);
+  const [weight, setWeight] = useState<number>(70);
+  const [style, setStyle] = useState<string>('allmountain');
   const { isFavorite, addFavorite, removeFavorite } = useFavoritesStore();
+
+  const calculateBoardLength = () => {
+    let baseLength = 150;
+    
+    if (weight < 50) baseLength = 140;
+    else if (weight < 60) baseLength = 145;
+    else if (weight < 70) baseLength = 150;
+    else if (weight < 80) baseLength = 155;
+    else if (weight < 90) baseLength = 160;
+    else if (weight < 100) baseLength = 165;
+    else baseLength = 170;
+
+    if (style === 'freestyle') {
+      baseLength -= 5;
+    } else if (style === 'powder') {
+      baseLength += 5;
+    } else if (style === 'carving') {
+      baseLength += 3;
+    }
+
+    return baseLength;
+  };
+
+  const calculateBindingAngle = () => {
+    let frontAngle = 15;
+    let backAngle = 0;
+
+    if (style === 'freestyle') {
+      frontAngle = 15;
+      backAngle = -12;
+    } else if (style === 'allmountain') {
+      frontAngle = 18;
+      backAngle = -6;
+    } else if (style === 'powder') {
+      frontAngle = 21;
+      backAngle = 0;
+    } else if (style === 'carving') {
+      frontAngle = 30;
+      backAngle = 0;
+    }
+
+    return { frontAngle, backAngle };
+  };
+
+  const calculateBindingWidth = () => {
+    let width = 50;
+
+    if (height < 160) width = 47;
+    else if (height < 170) width = 49;
+    else if (height < 180) width = 51;
+    else if (height < 190) width = 53;
+    else width = 55;
+
+    return width;
+  };
+
+  const boardLength = calculateBoardLength();
+  const { frontAngle, backAngle } = calculateBindingAngle();
+  const bindingWidth = calculateBindingWidth();
 
   const filteredEquipment = selectedCategory === 'all' 
     ? equipment 
@@ -26,8 +88,93 @@ export function EquipmentPage() {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-slate-800 mb-4">装备指南</h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            选择合适的装备是滑雪体验的关键，我们为您提供专业的装备选择指导
+            选择合适的装备是单板滑雪体验的关键，我们为您提供专业的装备选择指导
           </p>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-lg p-8 mb-12">
+          <h2 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+            <Ruler className="w-6 h-6 text-blue-600" />
+            装备计算器
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2 flex items-center gap-2">
+                <User className="w-4 h-4" />
+                身高 (cm)
+              </label>
+              <input
+                type="range"
+                min="140"
+                max="210"
+                value={height}
+                onChange={(e) => setHeight(Number(e.target.value))}
+                className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+              />
+              <div className="text-center mt-2 text-lg font-semibold text-blue-600">{height} cm</div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2 flex items-center gap-2">
+                <Scale className="w-4 h-4" />
+                体重 (kg)
+              </label>
+              <input
+                type="range"
+                min="40"
+                max="120"
+                value={weight}
+                onChange={(e) => setWeight(Number(e.target.value))}
+                className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+              />
+              <div className="text-center mt-2 text-lg font-semibold text-blue-600">{weight} kg</div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2 flex items-center gap-2">
+                <Mountain className="w-4 h-4" />
+                滑行风格
+              </label>
+              <select
+                value={style}
+                onChange={(e) => setStyle(e.target.value)}
+                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              >
+                {ridingStyles.map((s) => (
+                  <option key={s.id} value={s.id}>{s.name}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 text-center">
+              <div className="text-sm text-slate-600 mb-2">推荐雪板长度</div>
+              <div className="text-3xl font-bold text-blue-600">{boardLength} cm</div>
+              <div className="text-xs text-slate-500 mt-2">
+                ±2cm 为合理范围
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 text-center">
+              <div className="text-sm text-slate-600 mb-2">固定器角度</div>
+              <div className="text-3xl font-bold text-green-600">
+                {frontAngle}° / {backAngle}°
+              </div>
+              <div className="text-xs text-slate-500 mt-2">
+                前脚 / 后脚
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 text-center">
+              <div className="text-sm text-slate-600 mb-2">固定器间距</div>
+              <div className="text-3xl font-bold text-orange-600">{bindingWidth} cm</div>
+              <div className="text-xs text-slate-500 mt-2">
+                肩宽为参考基准
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="flex flex-wrap justify-center gap-4 mb-12">

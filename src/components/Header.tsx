@@ -11,7 +11,7 @@ export function Header() {
 
   const navItems = [
     { id: 'home', label: '首页', path: '/' },
-    { id: 'tutorials', label: '滑雪教程', path: '/tutorials' },
+    { id: 'tutorials', label: '单板教程', path: '/tutorials' },
     { id: 'equipment', label: '装备指南', path: '/equipment' },
     { id: 'resorts', label: '雪场推荐', path: '/resorts' },
   ];
@@ -25,7 +25,7 @@ export function Header() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
             <Snowflake className="w-8 h-8 text-blue-400" />
-            <span className="text-xl font-bold text-white">滑雪世界</span>
+            <span className="text-xl font-bold text-white">单板世界</span>
           </div>
 
           <nav className="hidden md:flex items-center gap-8">

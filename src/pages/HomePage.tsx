@@ -41,10 +41,10 @@ export function HomePage() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <div className="text-white max-w-2xl">
             <h1 className="text-4xl md:text-6xl font-bold mb-4">
-              探索滑雪的魅力
+              探索单板滑雪的魅力
             </h1>
             <p className="text-lg md:text-xl text-gray-300 mb-8">
-              从初学者到高手，我们为您提供专业的滑雪教程、装备选择指导和全球顶级雪场推荐
+              从初学者到高手，我们为您提供专业的单板滑雪教程、装备选择指导和全球顶级雪场推荐
             </p>
             <div className="flex flex-wrap gap-4">
               <button 
@@ -92,7 +92,7 @@ export function HomePage() {
           <div className="flex items-center justify-between mb-12">
             <div>
               <h2 className="text-3xl font-bold text-slate-800 mb-2">精选教程</h2>
-              <p className="text-gray-600">学习滑雪的最佳起点</p>
+            <p className="text-gray-600">学习单板滑雪的最佳起点</p>
             </div>
             <button 
               onClick={() => navigate('/tutorials')}
@@ -210,9 +210,9 @@ export function HomePage() {
 
       <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">准备好开始您的滑雪之旅了吗？</h2>
+          <h2 className="text-3xl font-bold text-white mb-4">准备好开始您的单板滑雪之旅了吗？</h2>
           <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
-            无论您是初学者还是资深滑雪爱好者，我们都能帮助您提升技能，发现新的雪场。
+            无论您是初学者还是资深单板滑雪爱好者，我们都能帮助您提升技能，发现新的雪场。
           </p>
           <button 
             onClick={() => navigate('/tutorials')}
