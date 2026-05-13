@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Star, MapPin, Mountain, TrendingUp, Heart, Share2, Clock, Calendar } from 'lucide-react';
+import { ArrowLeft, Star, MapPin, Mountain, TrendingUp, Heart, Share2, Clock, Calendar, TrendingDown } from 'lucide-react';
 import { resorts } from '../data/mockData';
 import { useFavoritesStore } from '../store/favoritesStore';
 
@@ -180,21 +180,40 @@ export function ResortDetailPage() {
                   </div>
                 </div>
                 <div className="mt-6 pt-6 border-t border-slate-200">
-                  <h4 className="font-bold text-slate-800 mb-2">门票价格</h4>
-                  <div className="space-y-2">
-                    <div className="flex justify-between">
+                  <h4 className="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                    <TrendingDown className="w-4 h-4 text-blue-600" />
+                    近五年票价走势
+                  </h4>
+                  <div className="space-y-3">
+                    {resort.priceHistory.map((price, index) => {
+                      const nextPrice = resort.priceHistory[index + 1];
+                      const change = nextPrice ? ((nextPrice.adultPrice - price.adultPrice) / price.adultPrice * 100).toFixed(1) : null;
+                      return (
+                        <div key={price.year} className="flex items-center justify-between">
+                          <span className="text-gray-600 font-medium">{price.year}年</span>
+                          <div className="flex items-center gap-2">
+                            <span className="text-slate-800 font-bold">¥{price.adultPrice}</span>
+                            {change !== null && (
+                              <span className={`text-xs ${parseFloat(change) >= 0 ? 'text-red-500' : 'text-green-500'}`}>
+                                {parseFloat(change) >= 0 ? '+' : ''}{change}%
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="mt-4 pt-4 border-t border-slate-200">
+                    <div className="flex justify-between text-sm">
                       <span className="text-gray-500">成人单日票</span>
-                      <span className="text-blue-600 font-bold">¥{resort.priceRange === '低' ? '200' : resort.priceRange === '中' ? '350' : resort.priceRange === '中高' ? '450' : '600'}+</span>
+                      <span className="text-blue-600 font-bold">¥{resort.priceHistory[resort.priceHistory.length - 1].adultPrice}</span>
                     </div>
-                    <div className="flex justify-between">
+                    <div className="flex justify-between text-sm mt-1">
                       <span className="text-gray-500">儿童单日票</span>
-                      <span className="text-blue-600 font-bold">¥{resort.priceRange === '低' ? '100' : resort.priceRange === '中' ? '175' : resort.priceRange === '中高' ? '225' : '300'}+</span>
+                      <span className="text-blue-600 font-bold">¥{resort.priceHistory[resort.priceHistory.length - 1].childPrice}</span>
                     </div>
                   </div>
                 </div>
-                <button className="mt-6 w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors">
-                  立即预订
-                </button>
               </div>
             </div>
           </div>

@@ -31,6 +31,7 @@ export interface Resort {
   priceRange: string;
   imageUrl: string;
   description: string;
+  priceHistory: { year: number; adultPrice: number; childPrice: number }[];
 }
 
 export const tutorials: Tutorial[] = [
@@ -185,7 +186,14 @@ export const resorts: Resort[] = [
     rating: 4.6,
     priceRange: '中高',
     imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=changbaishan%20ski%20resort%20china%20winter%20snow&image_size=landscape_16_9',
-    description: '亚洲最大的滑雪场之一，拥有丰富的雪道和完善的设施，适合单板滑行。'
+    description: '亚洲最大的滑雪场之一，拥有丰富的雪道和完善的设施，适合单板滑行。',
+    priceHistory: [
+      { year: 2020, adultPrice: 380, childPrice: 190 },
+      { year: 2021, adultPrice: 400, childPrice: 200 },
+      { year: 2022, adultPrice: 420, childPrice: 210 },
+      { year: 2023, adultPrice: 440, childPrice: 220 },
+      { year: 2024, adultPrice: 450, childPrice: 225 }
+    ]
   },
   {
     id: '2',
@@ -198,7 +206,14 @@ export const resorts: Resort[] = [
     rating: 4.5,
     priceRange: '中高',
     imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=chongli%20cloud%20top%20ski%20resort%20winter%20olympics&image_size=landscape_16_9',
-    description: '2022北京冬奥会场地，设施先进，拥有出色的单板公园。'
+    description: '2022北京冬奥会场地，设施先进，拥有出色的单板公园。',
+    priceHistory: [
+      { year: 2020, adultPrice: 360, childPrice: 180 },
+      { year: 2021, adultPrice: 390, childPrice: 195 },
+      { year: 2022, adultPrice: 450, childPrice: 225 },
+      { year: 2023, adultPrice: 460, childPrice: 230 },
+      { year: 2024, adultPrice: 480, childPrice: 240 }
+    ]
   },
   {
     id: '3',
@@ -211,7 +226,14 @@ export const resorts: Resort[] = [
     rating: 4.9,
     priceRange: '高',
     imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=zermatt%20switzerland%20ski%20resort%20matterhorn%20alps&image_size=landscape_16_9',
-    description: '阿尔卑斯山顶级雪场，拥有壮丽的马特洪峰景观，雪道丰富。'
+    description: '阿尔卑斯山顶级雪场，拥有壮丽的马特洪峰景观，雪道丰富。',
+    priceHistory: [
+      { year: 2020, adultPrice: 520, childPrice: 260 },
+      { year: 2021, adultPrice: 540, childPrice: 270 },
+      { year: 2022, adultPrice: 560, childPrice: 280 },
+      { year: 2023, adultPrice: 580, childPrice: 290 },
+      { year: 2024, adultPrice: 600, childPrice: 300 }
+    ]
   },
   {
     id: '4',
@@ -224,7 +246,14 @@ export const resorts: Resort[] = [
     rating: 4.7,
     priceRange: '中高',
     imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=niseko%20japan%20ski%20resort%20powder%20snow&image_size=landscape_16_9',
-    description: '世界著名的粉雪天堂，雪质绝佳，单板滑手的圣地。'
+    description: '世界著名的粉雪天堂，雪质绝佳，单板滑手的圣地。',
+    priceHistory: [
+      { year: 2020, adultPrice: 400, childPrice: 200 },
+      { year: 2021, adultPrice: 410, childPrice: 205 },
+      { year: 2022, adultPrice: 430, childPrice: 215 },
+      { year: 2023, adultPrice: 440, childPrice: 220 },
+      { year: 2024, adultPrice: 460, childPrice: 230 }
+    ]
   },
   {
     id: '5',
@@ -237,7 +266,14 @@ export const resorts: Resort[] = [
     rating: 4.8,
     priceRange: '高',
     imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=whistler%20canada%20ski%20resort%20mountain&image_size=landscape_16_9',
-    description: '北美最大的滑雪场，拥有世界顶级的单板公园。'
+    description: '北美最大的滑雪场，拥有世界顶级的单板公园。',
+    priceHistory: [
+      { year: 2020, adultPrice: 550, childPrice: 275 },
+      { year: 2021, adultPrice: 560, childPrice: 280 },
+      { year: 2022, adultPrice: 580, childPrice: 290 },
+      { year: 2023, adultPrice: 590, childPrice: 295 },
+      { year: 2024, adultPrice: 620, childPrice: 310 }
+    ]
   },
   {
     id: '6',
@@ -250,7 +286,14 @@ export const resorts: Resort[] = [
     rating: 4.4,
     priceRange: '中',
     imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=altay%20xinjiang%20ski%20resort%20china%20winter&image_size=landscape_16_9',
-    description: '中国雪都，拥有优质的粉雪资源，适合单板滑行。'
+    description: '中国雪都，拥有优质的粉雪资源，适合单板滑行。',
+    priceHistory: [
+      { year: 2020, adultPrice: 280, childPrice: 140 },
+      { year: 2021, adultPrice: 300, childPrice: 150 },
+      { year: 2022, adultPrice: 320, childPrice: 160 },
+      { year: 2023, adultPrice: 340, childPrice: 170 },
+      { year: 2024, adultPrice: 350, childPrice: 175 }
+    ]
   }
 ];
 
